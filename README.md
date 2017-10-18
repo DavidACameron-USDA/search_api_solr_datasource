@@ -5,18 +5,15 @@ for Search API indexes.  The plugin exposes documents from any Solr server to th
 index, providing the ability to search and view those documents, regardless of
 whether or not they were originally indexed by Drupal.
 
+ATTENTION!
+----------
+This module is obsolete!  It has been merged into <a href="/project/search_api_solr">Search API Solr's</a> 8.x-2.x branch.  No further development will be made to this module.  The repository will be deleted at some future date.  If you are already using this module in a site, then please switch to using the datasource in Search API Solr 8.x-2.x soon.
+
 Warning
 -------
 This module is still under development and should be considered _pre-alpha,
 unstable, and unsecure_.  It is recommended that you only use this module in
 development environments.
-
-Contributing
-------------
-Issues, patches, and pull requests are welcome in the GitHub repository.  This
-module is being developed exclusively during my personal free time.  If you would
-like to speed this project along, feel free to contribute code or contact me,
-dcameron, to sponsor the development.
 
 Installation and Setup
 ----------------------
