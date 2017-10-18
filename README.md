@@ -28,7 +28,7 @@ to get a development environment running.
 2. Add and configure a Search API server that uses the Solr backend.
    1. Configure this server with the connection information for the Solr server
       that contains the indexed data you want to display.
-   2. It may be necessary to check "Retrieve result data from Solr."
+   2. Check the option "Retrieve result data from Solr."
 3. Add a Search API index for the server you configured in step 2.
    1. Check "Solr Document" under the list of Data Sources.
    2. Configure the Solr Document Datasource by specifying the name of a unique ID
