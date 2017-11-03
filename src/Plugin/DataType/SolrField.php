@@ -22,11 +22,11 @@ use Drupal\search_api\Item\FieldInterface;
 class SolrField extends TypedData implements \IteratorAggregate, TypedDataInterface {
 
   /**
-   * The wrapped Search API Field.
+   * The field value(s).
    *
-   * @var \Drupal\search_api\Item\FieldInterface|null
+   * @var mixed
    */
-  protected $field;
+  protected $value;
 
   /**
    * Creates an instance wrapping the given Field.
@@ -45,36 +45,18 @@ class SolrField extends TypedData implements \IteratorAggregate, TypedDataInterf
     /** @var \Drupal\search_api_solr_datasource\SolrFieldManagerInterface $field_manager */
     $field_manager = \Drupal::getContainer()->get('solr_field.manager');
     $server_id = $field->getIndex()->getServerInstance()->id();
-    $field_id = $field->getFieldIdentifier();
+    $field_id = $field->getPropertyPath();
     $definition = $field_manager->getFieldDefinitions($server_id)[$field_id];
     $instance = new static($definition, $name, $parent);
-    $instance->setValue($field);
+    $instance->setValue($field->getValues());
     return $instance;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function getValue() {
-    return $this->field;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setValue($field, $notify = TRUE) {
-    $this->field = $field;
-    // Notify the parent of any changes.
-    if ($notify && isset($this->parent)) {
-      $this->parent->onChange($this->name);
-    }
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function getIterator() {
-    return isset($this->field) ? $this->field->getIterator() : new \ArrayIterator([]);
+    return new \ArrayIterator((array) $this->value);
   }
 
 }
